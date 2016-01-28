@@ -1599,8 +1599,12 @@ $.extend(Selectize.prototype, {
 	refreshState: function() {
 		var invalid, self = this;
 		if (self.isRequired) {
-			if (self.items.length) self.isInvalid = false;
+			invalid = !self.items.length;
+			if (!invalid) {
+			  self.isInvalid = false;
+			}
 			self.$control_input.prop('required', invalid);
+			self.$input.prop('required', false);
 		}
 		self.refreshClasses();
 	},
