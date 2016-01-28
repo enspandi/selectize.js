@@ -2649,12 +2649,16 @@
 		 * and CSS classes.
 		 */
 		refreshState: function() {
-			var invalid, self = this;
-			if (self.isRequired) {
-				if (self.items.length) self.isInvalid = false;
-				self.$control_input.prop('required', invalid);
-			}
-			self.refreshClasses();
+		  var invalid, self = this;
+		  if (self.isRequired) {
+		    invalid = !self.items.length;
+		    if (!invalid) {
+		      self.isInvalid = false;
+		    }
+		    self.$control_input.prop('required', invalid);
+		    self.$input.prop('required', false);
+		  }
+		  self.refreshClasses();
 		},
 	
 		/**
